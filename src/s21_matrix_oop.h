@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 #include <stdexcept>
 
 class S21Matrix {
@@ -10,6 +11,7 @@ class S21Matrix {
         ~S21Matrix();                        // Destructor
 
         double& operator()(int rows, int cols);
+        const double& operator()(int rows, int cols) const;
 
         bool EqMatrix(const S21Matrix& other);      // Comparision of two matrix
         void SumMatrix(const S21Matrix& other);     // Sum of two matrix
@@ -29,7 +31,9 @@ class S21Matrix {
     private:
         void AllocateMatrix();
         void FreeMatrix();
+        bool IsEqualSize(const S21Matrix& other);
 
         int rows_, cols_;         // Rows and columns
         double **matrix_;         // Pointer to the memory where the matrix is allocated
+        const double EPS = 1e-6;
 };
