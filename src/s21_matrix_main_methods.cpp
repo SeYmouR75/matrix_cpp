@@ -1,8 +1,16 @@
-// #include "s21_matrix_oop.h"
+#include "s21_matrix_oop.h"
 
-// bool S21Matrix::EqMatrix(const S21Matrix& other){
-//     return 0;
-// }
+bool S21Matrix::EqMatrix(const S21Matrix& other){
+    if (!IsEqualSize(other)) return false;
+
+    for (int i = 0; i < rows_; i++){
+        for (int j = 0; j < cols_; j++){
+            if(fabs(matrix_[i][j] - other.matrix_[i][j]) < EPS) return false;
+        }
+    }
+
+    return true;
+}
 
 // void S21Matrix::SumMatrix(const S21Matrix& other){
 
