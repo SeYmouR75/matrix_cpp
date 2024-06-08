@@ -10,52 +10,52 @@ TEST(ConstructorTest, DefaultConstructor) {
   EXPECT_EQ(Matrix.GetCols(), 0);
 }
 
-// TEST(ConstructorTest, ParameterizedConstructor_1) {
-//   S21Matrix Matrix{1, 10};
-//   EXPECT_EQ(Matrix.GetRows(), 1);
-//   EXPECT_EQ(Matrix.GetCols(), 10);
-//   for (int i = 0; i < Matrix.GetRows(); ++i) {
-//     for (int j = 0; j < Matrix.GetCols(); ++j) {
-//       EXPECT_EQ(Matrix(i, j), 0);
-//     }
-//   }
-// }
+TEST(ConstructorTest, ParameterizedConstructor_1) {
+  S21Matrix Matrix{1, 10};
+  EXPECT_EQ(Matrix.GetRows(), 1);
+  EXPECT_EQ(Matrix.GetCols(), 10);
+  for (int i = 0; i < Matrix.GetRows(); ++i) {
+    for (int j = 0; j < Matrix.GetCols(); ++j) {
+      EXPECT_EQ(Matrix(i, j), 0);
+    }
+  }
+}
 
-// TEST(ConstructorTest, ParameterizedConstructor_2) {
-//   S21Matrix Matrix{0, 0};
-//   EXPECT_EQ(Matrix.GetRows(), 0);
-//   EXPECT_EQ(Matrix.GetCols(), 0);
-// }
+TEST(ConstructorTest, ParameterizedConstructor_2) {
+  S21Matrix Matrix{0, 0};
+  EXPECT_EQ(Matrix.GetRows(), 0);
+  EXPECT_EQ(Matrix.GetCols(), 0);
+}
 
-// TEST(ConstructorTest, ParameterizedConstructor_3) {
-//   EXPECT_THROW(S21Matrix Matrix(-4, 2), std::out_of_range);
-// }
+TEST(ConstructorTest, ParameterizedConstructor_3) {
+  EXPECT_THROW(S21Matrix Matrix(-4, 2), std::out_of_range);
+}
 
-// TEST(ConstructorTest, CopyConstructor_1) {
-//   S21Matrix reference{5, 5};
-//   RandomFill(reference);
-//   S21Matrix Copy(reference);
-//   EXPECT_TRUE(reference.EqMatrix(Copy));
-// }
+TEST(ConstructorTest, CopyConstructor_1) {
+  S21Matrix reference{5, 5};
+  FillMatrixRandom(reference);
+  S21Matrix Copy(reference);
+  EXPECT_TRUE(reference.EqMatrix(Copy));
+}
 
-// TEST(ConstructorTest, CopyConstructor_2) {
-//   S21Matrix reference{0, 0};
-//   S21Matrix Copy(reference);
-//   EXPECT_TRUE(reference.EqMatrix(Copy));
-// }
+TEST(ConstructorTest, CopyConstructor_2) {
+  S21Matrix reference{0, 0};
+  S21Matrix Copy(reference);
+  EXPECT_TRUE(reference.EqMatrix(Copy));
+}
 
-// TEST(ConstructorTest, MoveConstructor_1) {
-//   S21Matrix reference{3, 5};
-//   RandomFill(reference);
-//   S21Matrix Copy{std::move(reference)};
-//   EXPECT_FALSE(Copy.EqMatrix(reference));
-// }
+TEST(ConstructorTest, MoveConstructor_1) {
+  S21Matrix reference{3, 5};
+  FillMatrixRandom(reference);
+  S21Matrix Copy{std::move(reference)};
+  EXPECT_FALSE(Copy.EqMatrix(reference));
+}
 
-// TEST(ConstructorTest, MoveConstructor_2) {
-//   S21Matrix reference{};
-//   S21Matrix Copy{std::move(reference)};
-//   EXPECT_FALSE(Copy.EqMatrix(reference));
-// }
+TEST(ConstructorTest, MoveConstructor_2) {
+  S21Matrix reference{};
+  S21Matrix Copy{std::move(reference)};
+  EXPECT_FALSE(Copy.EqMatrix(reference));
+}
 
 // TEST(ArithmeticsTest, SumMatrix_1) {
 //   S21Matrix summand_1(3, 3);
@@ -762,7 +762,7 @@ TEST(ConstructorTest, DefaultConstructor) {
 // TEST(OtherTest, EqMatrix_1) {
 //   S21Matrix Matrix_1(3, 3);
 //   S21Matrix Matrix_2(3, 3);
-//   RandomFill(Matrix_1);
+//   FillMatrixRandom(Matrix_1);
 
 //   EXPECT_FALSE(Matrix_1.EqMatrix(Matrix_2));
 // }
@@ -802,7 +802,7 @@ TEST(ConstructorTest, DefaultConstructor) {
 
 // TEST(OperatorTest, OpAssing_1) {
 //   S21Matrix Matrix_1(7, 8);
-//   RandomFill(Matrix_1);
+//   FillMatrixRandom(Matrix_1);
 //   S21Matrix Matrix_2(4, 3);
 //   Matrix_2 = Matrix_1;
 //   EXPECT_TRUE(Matrix_1 == Matrix_2);
