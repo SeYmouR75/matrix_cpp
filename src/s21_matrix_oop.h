@@ -10,7 +10,18 @@ class S21Matrix {
         S21Matrix(S21Matrix&& other);        // Move constructor
         ~S21Matrix();                        // Destructor
 
+        S21Matrix& operator+=(const S21Matrix& other);
         S21Matrix operator+(const S21Matrix& other);
+
+        S21Matrix& operator-=(const S21Matrix& other);
+        S21Matrix operator-(const S21Matrix& other);
+
+        S21Matrix& operator*=(const double num);
+        S21Matrix operator*(const double num);
+
+        S21Matrix& operator*=(const S21Matrix& other);
+        S21Matrix operator*(const S21Matrix& other);
+
         S21Matrix& operator=(const S21Matrix& other);
         bool operator==(S21Matrix& other);
         double& operator()(int rows, int cols);

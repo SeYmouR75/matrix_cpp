@@ -1,5 +1,49 @@
 #include "s21_matrix_oop.h"
 
+S21Matrix S21Matrix::operator+(const S21Matrix& other){
+    S21Matrix Copy(*this);
+    Copy.SumMatrix(other);
+    return Copy;
+}
+
+S21Matrix S21Matrix::operator-(const S21Matrix& other){
+    S21Matrix Copy(*this);
+    Copy.SubMatrix(other);
+    return Copy;
+}
+
+S21Matrix S21Matrix::operator*(const S21Matrix& other){
+    S21Matrix Copy(*this);
+    Copy.MulMatrix(other);
+    return Copy;
+}
+
+S21Matrix S21Matrix::operator*(const double num){
+    S21Matrix Copy(*this);
+    Copy.MulNumber(num);
+    return Copy;
+}
+
+S21Matrix& S21Matrix::operator+=(const S21Matrix& other){
+    SumMatrix(other);
+    return *this;
+}
+
+S21Matrix& S21Matrix::operator-=(const S21Matrix& other){
+    SubMatrix(other);
+    return *this;
+}
+
+S21Matrix& S21Matrix::operator*=(const double num){
+    MulNumber(num);
+    return *this;
+}
+
+S21Matrix& S21Matrix::operator*=(const S21Matrix& other){
+    MulMatrix(other);
+    return *this;
+}
+
 S21Matrix& S21Matrix::operator=(const S21Matrix& other){
     if (this != &other) {
         FreeMatrix();
