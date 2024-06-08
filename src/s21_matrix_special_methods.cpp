@@ -20,10 +20,7 @@ S21Matrix::S21Matrix(const S21Matrix& other){
     }
 }
 
-S21Matrix::S21Matrix(S21Matrix&& other){
-    rows_ = other.rows_;
-    cols_ = other.cols_;
-    matrix_ = other.matrix_;
+S21Matrix::S21Matrix(S21Matrix&& other) : rows_(other.rows_), cols_(other.cols_), matrix_(other.matrix_) {
     other.matrix_ = nullptr;
 }
 
