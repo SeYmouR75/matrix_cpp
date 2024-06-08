@@ -11,10 +11,13 @@ void S21Matrix::AllocateMatrix(){
 }
 
 void S21Matrix::FreeMatrix(){
-    for (int i = 0; i < rows_; i++){
-        delete[] matrix_[i];
+    if (matrix_ != nullptr){
+        for (int i = 0; i < rows_; i++){
+            delete[] matrix_[i];
+        }
+        delete[] matrix_;
     }
-    delete[] matrix_;
+    
 }
 
 bool S21Matrix::IsEqualSize(const S21Matrix& other){
