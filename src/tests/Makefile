@@ -24,7 +24,10 @@ $(BUILD_DIR)/%.o: %.cpp
 	
 test: $(TARGET)
 	./$(BUILD_DIR)/$(TARGET)
-#	valgrind --tool=memcheck --leak-check=yes -s ./$(BUILD_DIR)/$(TARGET)
+
+valgrind: $(TARGET)
+	valgrind --tool=memcheck --leak-check=yes -s ./$(BUILD_DIR)/$(TARGET)
+
 
 gcov: gcov_flags test
 

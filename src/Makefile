@@ -26,14 +26,18 @@ $(BUILD_DIR)/%.o: %.cpp
 test: clean $(TARGET)
 	cd $(TEST_DIR) && make test
 
+valgrind: clean $(TARGET)
+	cd $(TEST_DIR) && make valgrind
+
 gcov_report: clean gcov_flags $(TARGET)	
 	cd $(TEST_DIR) && make gcov
-	lcov -t "coverage_report" -o $(REPORT_DIR)/s21_matrix_oop.info -c -d $(BUILD_DIR) -d $(TEST_DIR)/$(BUILD_DIR)
-	genhtml $(REPORT_DIR)/s21_matrix_oop.info -o report 
+	lcov -o $(REPORT_DIR)/s21_matrix_oop.info -c -d $(BUILD_DIR) -d $(TEST_DIR)/$(BUILD_DIR) --ignore-errors mismatch
+	lcov -r $(REPORT_DIR)/s21_matrix_oop.info '/usr/include/*' -o $(REPORT_DIR)/filtered_coverage.info
+	genhtml $(REPORT_DIR)/filtered_coverage.info -o report 
 	xdg-open $(REPORT_DIR)/index.html
 
 gcov_flags: 
-	$(eval CFLAGS += -g3 --coverage)
+	$(eval CFLAGS += -fprofile-arcs -ftest-coverage)
 
 clean_obj:
 	rm -rf $(BUILD_DIR)/*
